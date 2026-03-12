@@ -10,7 +10,7 @@ System Failure Analyzer is a C based system monitoring and diagnosis tool.
 
 ## Future Improvement
 - Log history analyzer
-- Failure prediction
+- Failure/maintenance prediction
 - Alert system
 
 ## Team
