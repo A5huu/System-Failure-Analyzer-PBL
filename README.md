@@ -36,6 +36,7 @@ System-Failure-Analyzer-PBL
 2. Verify the feature works correctly.
 3. Integrate the feature into `pbl.c`.
 4. Commit the updated system to the repository.
+- Read `contributing.md` for more.
 
 ## Team
 - Jeewesh(A5huu) [Logic Building, Development]
