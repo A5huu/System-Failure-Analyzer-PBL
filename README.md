@@ -1,6 +1,7 @@
 # System-Failure-Analyzer-PBL
 The 2nd sem C PBL project for the degree of BCA(hons.) with Artificial Intelligence and Data Science at Graphic Era Hill University, Bhimtal.
-System Failure Analyzer is a C based system monitoring and diagnosis tool.
+System Failure Analyzer is a C based system monitoring and diagnosis tool.<br>
+Check out `Synopsis 33.pdf` for details.
 
 ## Features
 - System Parameter Analysis
