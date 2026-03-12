@@ -43,6 +43,6 @@ System-Failure-Analyzer-PBL
 - Kanchan() [Documentation]
 
 ## Author 
-- Jeewesh Singh Bisht (A5huu)
-- BCA(hons.) AI & DS
-- Graphic Era Hill University
+Jeewesh Singh Bisht (A5huu) <br>
+BCA(hons.) AI & DS <br>
+Graphic Era Hill University
