@@ -1,0 +1,17 @@
+
+===========SYSTEM DIAGNOSIS REPORT===========
+System ID: SYS202
+Time: 2026-03-18_22-45-58
+
+---SYSTEM PARAMETERS---
+CPU Usage: 81%
+CPU Temperature: 79%
+Memory Usage: 94%
+Disk Activity: 67%
+Uptime(hours): 18
+
+---DIAGNOSIS RESULT---
+Risk Score:125
+Risk Score Percentage(%):50.00%
+System State: WarningEND
+============================================

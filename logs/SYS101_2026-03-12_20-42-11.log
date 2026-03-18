@@ -1,0 +1,18 @@
+
+===========SYSTEM DIAGNOSIS REPORT===========
+System ID: SYS101
+Time: 2026-03-12_20-42-11
+
+---SYSTEM PARAMETERS---
+CPU Usage: 60%
+CPU Temperature: 62%
+Memory Usage: 65%
+Disk Activity: 55%
+Uptime(hours): 4
+
+---DIAGNOSIS RESULT---
+Risk Score:15
+Risk Score Percentage(%):6.00%
+System State: Safe
+END
+============================================
