@@ -52,6 +52,7 @@ Mkfile.old
 dkms.conf
 #logs
 logs/*.log
+*.py
 
 # debug information files
 *.dwo
