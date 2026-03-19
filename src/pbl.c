@@ -122,11 +122,11 @@ void write_log(struct parameters p, int risk_score, float risk_score_per)
     char time[100];
 
     time_live(time);
-    mkdir("logs");
+    mkdir("../logs");
     //create the file
 
     sprintf(logname,"%s_%s.log",p.system_id,time);
-    sprintf(filepath,"logs/%s", logname);
+    sprintf(filepath,"../logs/%s", logname);
     lf=fopen(filepath,"w");
     if(lf==NULL){
         printf("Error crating log file\n");
@@ -307,7 +307,7 @@ void analyze_system_logs(char system_id[50])
     int highest=0;
     int lowest=251;
     int latest_risk_score=0;
-    d=opendir("logs");
+    d=opendir("../logs");
     if(d==NULL)
     {
         printf("Error Opening Logs Folder\n");
@@ -318,7 +318,7 @@ void analyze_system_logs(char system_id[50])
         if(strstr(dir->d_name, system_id)&& strstr(dir->d_name, ".log"))
         {
             char filepath[50];
-            sprintf(filepath,"logs/%s",dir->d_name);
+            sprintf(filepath,"../logs/%s",dir->d_name);
             FILE *lf = fopen(filepath, "r");
             char line[100];
             int log_risk_score=0;

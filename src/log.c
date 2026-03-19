@@ -28,7 +28,7 @@ void analyze_system_logs(char system_id[50])
 
     int latest_risk_score=0;
 
-    d=opendir("logs");
+    d=opendir("../logs");
     if(d==NULL){
         printf("Error opening logs folder\n");
         return;
@@ -38,7 +38,7 @@ void analyze_system_logs(char system_id[50])
         if(strstr(dir->d_name, system_id) && strstr(dir->d_name, ".log"))
         {
             char filepath[150];
-            sprintf(filepath,"logs/%s", dir->d_name);
+            sprintf(filepath,"../logs/%s", dir->d_name);
             FILE *lf = fopen(filepath,"r");
             char line[100]="";
             int log_risk_score=0;
