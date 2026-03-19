@@ -2,6 +2,7 @@
 #include <string.h>
 #include<time.h>
 #include<dirent.h>
+#include<stdlib.h>
 //#include <sys.c>
 
 struct parameters
@@ -15,6 +16,7 @@ struct parameters
 };
 
 void show_menu();
+void back_menu();
 void time_live(char *buffer);
 void write_log(struct parameters p, int risk_score, float risk_score_per);
 void run_diagnosis();
@@ -55,7 +57,7 @@ do {
             check_logs();
             break;
         case '3':
-            printf("Displaying risk list...\n");
+            printf("Displaying risk list...\nFeature Not Ready Yet :<\n");
             //show_risk_list();
             break;
         case '4':
@@ -70,6 +72,31 @@ do {
     }
 }while (op!='5');
     
+}
+
+void back_menu()
+{
+    char op2;
+    while(1)
+    {
+        printf("\nEnter 'M for Main Menu or 'E' to Exit\n");
+        printf("Enter M/E: ");
+        scanf(" %c",&op2);
+
+        if(op2=='m' || op2=='M')
+        {
+            return;
+        }
+        else if (op2=='e' || op2=='E')
+        {
+            printf("Exiting Program, Goodbye.");
+            exit(0);
+        }
+        else
+        {
+            printf("Invalid input!\n");
+        }
+    }
 }
 
 void time_live(char *buffer){
@@ -267,6 +294,7 @@ void run_diagnosis()
     printf("Your Risk Score Percentage is : %.2f%%\n", risk_score_per);
     printf("Diagnosis Complete.\n");
     write_log(p, risk_score, risk_score_per);
+    back_menu();
 }
 
 void analyze_system_logs(char system_id[50])
@@ -369,6 +397,8 @@ void analyze_system_logs(char system_id[50])
         {
             printf("Prediction: Higher Failure Probability Immediate Attention Required\n");
         }
+        printf("\n=============================\n");
+        back_menu();
     }
 }
 

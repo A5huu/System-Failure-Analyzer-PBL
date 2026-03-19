@@ -1,8 +1,10 @@
 #include<stdio.h>
+#include<stdlib.h>
 void show_menu();
+void back_menu();
 int main()
 {
-    show_menu();
+    back_menu();
     return 0;
 }
 void show_menu()
@@ -46,4 +48,29 @@ do {
     }
 }while (op!='5');
     
+}
+void back_menu()
+{
+    char op2;
+    while(1)
+    {
+        printf("\nEnter 'M for Main Menu or 'E' to Exit\n");
+        printf("Enter M/E: ");
+        scanf(" %c",&op2);
+
+        if(op2=='m' || op2=='M')
+        {
+            return;
+        }
+        else if (op2=='e' || op2=='E')
+        {
+            printf("Exiting Program, Goodbye.");
+            exit(0);
+        }
+        else
+        {
+            printf("Invalid input!\n");
+        }
+        
+    }
 }

@@ -19,6 +19,7 @@ int main()
     run_diagnosis();
     return 0;
 }
+
 void time_live(char *buffer){
     
     time_t t = time(NULL);
@@ -215,6 +216,3 @@ void run_diagnosis()
     write_log(p, risk_score, risk_score_per);
     
 }
-
-
-
