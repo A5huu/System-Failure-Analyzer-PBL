@@ -21,6 +21,7 @@ void time_live(char *buffer);
 void write_log(struct parameters p, int risk_score, float risk_score_per);
 void run_diagnosis();
 void check_logs();
+void about_help();
 void analyze_system_logs(char system_id[50]);
 //void show_risk_list();
 //void about();
@@ -62,7 +63,7 @@ do {
             break;
         case '4':
             printf("About: This is a system utility program.\n");
-            //about();
+            about_help();
             break;
         case '5':
             printf("Exiting program. Goodbye!\n");
@@ -408,4 +409,52 @@ void check_logs()
     printf("\nEnter the System ID:");
     scanf("%s",system_id);
     analyze_system_logs(system_id);
+}
+void about_help()
+{
+    printf("\n=================================================\n");
+    printf(" SYSTEM FAILURE ANALYZER (SFA)\n");
+    printf("=================================================\n");
+
+    printf("\n>> ABOUT THE SYSTEM:\n");
+    printf("- This system is designed to diagnose & analyze system failures,\n in centralized way for distributed systems\n");
+    printf("- logs critical events, and help users understand\n");
+    printf("- possible causes and risks associated with failures.\n");
+    printf("- identifies problems with your systems and gives preventive measures and predictions\n");
+
+    printf("\n>> WORKFLOW OVERVIEW:\n");
+    printf("1. Select an option from the Main Menu.\n");
+    printf("2. Input required system details.\n");
+    printf("3. System analyzes the input and identifies:\n");
+    printf(" - Type of failure\n");
+    printf(" - Possible causes\n");
+    printf(" - Risk level\n");
+    printf("4. A detailed report is generated.\n");
+    printf("5. Report is automatically saved as a log file.\n");
+
+    printf("\n>> KEY FEATURES:\n");
+    printf("- Failure Classification\n");
+    printf("- Risk Level Detection\n");
+    printf("- Log File Generation\n");
+    printf("- Simple & Interactive CLI Interface\n");
+    printf("- Hostorical data analysis and trends, predictions\n");
+
+    printf("\n>> HOW TO USE:\n");
+    printf("- Choose '1. Run Diagnosis' to input system issues.\n");
+    printf("- Choose '2. Check logs' to check latest log reports.\n");
+    printf("- Choose '3.Risk List' to get a distributed list of ciritical systems.");
+    printf("- Use the Back Menu to return anytime.\n");
+
+    printf("\n>> LOG FILE INFO:\n");
+    printf("- Logs are saved with unique names:\n");
+    printf(" systemID_date_time.log\n");
+    printf("- Helps in tracking and future analysis.\n");
+
+    printf("\n>> DEVELOPED BY:\n");
+    printf("BCA 2nd Sem Project Team ID: 33 \n");
+    printf("@GEHU Bhimtal\n");
+
+    printf("\n=================================================\n");
+
+    back_menu();
 }
