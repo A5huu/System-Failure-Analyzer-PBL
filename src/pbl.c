@@ -115,17 +115,16 @@ void time_live(char *buffer){
 
 }
 
-void write_log(struct parameters p, int risk_score, float risk_score_per)
-{
+void write_log(struct parameters p, int risk_score, float risk_score_per){
     FILE *lf;
     char logname[100];
-    char filepath[150];
     char time[100];
+    char filepath[150];
+    int issue_found=0;
 
     time_live(time);
     mkdir("../logs");
     //create the file
-
     sprintf(logname,"%s_%s.log",p.system_id,time);
     sprintf(filepath,"../logs/%s", logname);
     lf=fopen(filepath,"w");
@@ -135,40 +134,101 @@ void write_log(struct parameters p, int risk_score, float risk_score_per)
     }
     else
     {
-            fprintf(lf,"\n===========SYSTEM DIAGNOSIS REPORT===========\n");
+    fprintf(lf,"\n=====================================\n");
+    fprintf(lf,"       System Diagnosis Report\n");
+    fprintf(lf,"\n=====================================\n");
     fprintf(lf,"System ID: %s\n",p.system_id);
-    fprintf(lf,"Time: %s\n",time);
-    fprintf(lf,"\n---SYSTEM PARAMETERS---\n");
-    fprintf(lf,"CPU Usage: %d%%\n",p.cpu_usage);
-    fprintf(lf,"CPU Temperature: %d%%\n",p.cpu_temp);
-    fprintf(lf,"Memory Usage: %d%%\n",p.memory_usage);
-    fprintf(lf,"Disk Activity: %d%%\n",p.disk_act);
-    fprintf(lf,"Uptime(hours): %d\n",p.uptime);
-    fprintf(lf,"\n---DIAGNOSIS RESULT---\n");
-    fprintf(lf,"Risk Score:%d\n",risk_score);
-    fprintf(lf,"Risk Score Percentage(%%):%.2f%%\n",risk_score_per);
-    if (risk_score_per<50)
+    fprintf(lf,"-------------------------------------\n");
+    fprintf(lf,"CPU Usage       : %d%%\n",p.cpu_usage);
+    fprintf(lf,"CPU Temperature : %d\n",p.cpu_temp);
+    fprintf(lf,"Memory Usage    : %d%%\n",p.memory_usage);
+    fprintf(lf,"Disk Activity   : %d%%\n",p.disk_act);
+    fprintf(lf,"Uptime          : %d\n",p.uptime);
+    fprintf(lf,"-------------------------------------\n");
+    fprintf(lf,"Risk Score      : %d/250\n", risk_score);
+    fprintf(lf,"Risk Percentage : %.2f%%\n", risk_score_per);
+    if(risk_score_per<41)
     {
-        fprintf(lf,"System State: Safe\n");
+        fprintf(lf,"System Status   : Safe\n");
     }
-    else if (risk_score_per<75)
+    else if(risk_score_per<71)
     {
-        fprintf(lf,"System State: Warning");
+        fprintf(lf,"System Status   : Warning\n");
     }
     else
     {
-        fprintf(lf,"System State: Critical");
+        fprintf(lf,"System Status   : Critical\n");
     }
-    fprintf(lf,"END\n");
-    fprintf(lf,"============================================\n");
+
+    fprintf(lf,"--- Issues Detected ---\n");
+    if(p.cpu_usage>85)
+    {
+        fprintf(lf,"* High CPU usage detected\n");
+        issue_found=1;
+    }
+    if(p.cpu_temp>85)
+    {
+        fprintf(lf,"* CPU Overheating detected\n");
+        issue_found=1;
+    }
+    if(p.memory_usage>85)
+    {
+        fprintf(lf,"* High Memory Usage detected\n");
+        issue_found=1;
+    }
+    if(p.disk_act>85)
+    {
+        fprintf(lf,"* High Disk Activity detected\n");
+        issue_found=1;
+    }
+    if(p.uptime>85)
+    {
+        fprintf(lf,"* System Running for longer durations\n");
+        issue_found=1;
+    }
+    if(issue_found==0)
+    {
+        fprintf(lf,"No Major Issue Detected\n");
+    }
+
+    fprintf(lf,"--- Possible Fixes ---\n");
+    if(p.cpu_usage>85)
+    {
+        fprintf(lf,"* Close unnecessary background applications\n");
+        
+    }
+    if(p.cpu_temp>85)
+    {
+        fprintf(lf,"* Check cooling system or fan performance\n");
+    }
+    if(p.memory_usage>85)
+    {
+        fprintf(lf,"* Restart system of free up memory\n");
+    }
+    if(p.disk_act>85)
+    {
+        fprintf(lf,"* Reduce disk intensive operations\n");
+    }
+    if(p.uptime>12)
+    {
+        fprintf(lf,"* Consider restarting the system\n");
+    }
+    if(issue_found==0)
+    {
+        fprintf(lf,"No action required system is operating optimally\n");
+    }
+    fprintf(lf,"\n=====================================\n");
+    fprintf(lf,"       END\n");
+    fprintf(lf,"=====================================\n");
     fclose(lf);
-    printf("Log file saved: %s\n", logname);
+    printf("Log file saved: logs/%s\n", logname);
     }
 }
 
 void run_diagnosis()
 {
-     struct parameters p;
+    struct parameters p;
+    int issue_found=0;
     printf("Enter the System ID:");
     scanf("%s", p.system_id);
     printf("Enter CPU Usage (%%):");
@@ -248,7 +308,7 @@ void run_diagnosis()
         risk_score += 50;
     }
 
-//Disk Activity
+    //Disk Activity
     if(p.disk_act<60)
     {
         risk_score += 0;
@@ -291,9 +351,93 @@ void run_diagnosis()
     }
 
     risk_score_per = ((float)risk_score*100)/250.0;
-    printf("Your Risk Score is : %d\n", risk_score);
-    printf("Your Risk Score Percentage is : %.2f%%\n", risk_score_per);
-    printf("Diagnosis Complete.\n");
+    
+    printf("\n=====================================\n");
+    printf("       System Diagnosis Report\n");
+    printf("\n=====================================\n");
+    printf("System ID: %s\n",p.system_id);
+    printf("-------------------------------------\n");
+    printf("CPU Usage       : %d%%\n",p.cpu_usage);
+    printf("CPU Temperature : %d\n",p.cpu_temp);
+    printf("Memory Usage    : %d%%\n",p.memory_usage);
+    printf("Disk Activity   : %d%%\n",p.disk_act);
+    printf("Uptime          : %d\n",p.uptime);
+    printf("-------------------------------------\n");
+    printf("Risk Score      : %d/250\n", risk_score);
+    printf("Risk Percentage : %.2f%%\n", risk_score_per);
+    if(risk_score_per<41)
+    {
+        printf("System Status   : Safe\n");
+    }
+    else if(risk_score_per<71)
+    {
+        printf("System Status   : Warning\n");
+    }
+    else
+    {
+        printf("System Status   : Critical\n");
+    }
+
+    printf("--- Issues Detected ---\n");
+    if(p.cpu_usage>85)
+    {
+        printf("* High CPU usage detected\n");
+        issue_found=1;
+    }
+    if(p.cpu_temp>85)
+    {
+        printf("* CPU Overheating detected\n");
+        issue_found=1;
+    }
+    if(p.memory_usage>85)
+    {
+        printf("* High Memory Usage detected\n");
+        issue_found=1;
+    }
+    if(p.disk_act>85)
+    {
+        printf("* High Disk Activity detected\n");
+        issue_found=1;
+    }
+    if(p.uptime>85)
+    {
+        printf("* System Running for longer durations\n");
+        issue_found=1;
+    }
+    if(issue_found==0)
+    {
+        printf("No Major Issue Detected\n");
+    }
+
+    printf("--- Possible Fixes ---\n");
+    if(p.cpu_usage>85)
+    {
+        printf("* Close unnecessary background applications\n");
+        
+    }
+    if(p.cpu_temp>85)
+    {
+        printf("* Check cooling system or fan performance\n");
+    }
+    if(p.memory_usage>85)
+    {
+        printf("* Restart system of free up memory\n");
+    }
+    if(p.disk_act>85)
+    {
+        printf("* Reduce disk intensive operations\n");
+    }
+    if(p.uptime>12)
+    {
+        printf("* Consider restarting the system\n");
+    }
+    if(issue_found==0)
+    {
+        printf("No action required system is operating optimally\n");
+    }
+    printf("\n=====================================\n");
+    printf("       DIAGNOSIS COMPLETE\n");
+    printf("=====================================\n");
     write_log(p, risk_score, risk_score_per);
     back_menu();
 }
