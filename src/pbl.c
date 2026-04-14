@@ -3,7 +3,7 @@
 #include<time.h>
 #include<dirent.h>
 #include<stdlib.h>
-//#include <sys.c>
+
 
 struct parameters
 {
@@ -17,14 +17,13 @@ struct parameters
 
 void show_menu();
 void back_menu();
-void time_live(char *buffer);
+void time_live(char *buffer);.0
 void write_log(struct parameters p, int risk_score, float risk_score_per);
 void run_diagnosis();
 void check_logs();
 void about_help();
 void analyze_system_logs(char system_id[50]);
 //void show_risk_list();
-//void about();
 
 int main()
 {
@@ -633,6 +632,3 @@ void about_help()
 
     back_menu();
 }
-/*git
-with extra lines
-for no reason */
